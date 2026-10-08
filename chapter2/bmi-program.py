@@ -54,7 +54,5 @@ widget.setLayout(layout)
 window.setCentralWidget(widget)
 window.show()
 
-# Start the event loop.
-
 # running the application
 app.exec()
