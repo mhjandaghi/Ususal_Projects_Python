@@ -10,7 +10,7 @@ class WeatherAbstract(ABC):
         pass
 
 
-# openweather class
+# open_weather class
 class OpenWeatherProvider(WeatherAbstract):
     base_url = "https://api.openweathermap.org/data/2.5/weather"
     
