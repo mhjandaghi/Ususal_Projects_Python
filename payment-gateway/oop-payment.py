@@ -30,16 +30,16 @@ class AbstractPaymentGateway(ABC):
     request_timeout = 30
     
     @abstractmethod
-    def initiate_payment(amount, invoice_id=None):
+    def initiate_payment(self, amount, invoice_id=None):
         pass
     @abstractmethod
-    def generate_payment_url(authority):
+    def generate_payment_url(self, authority):
         pass
     @abstractmethod
-    def verify_payment(amount, authority):
+    def verify_payment(self, amount, authority):
         pass
     @abstractmethod
-    def activate_sandbox():
+    def activate_sandbox(self):
         pass
     
     def _make_request(self, url, payload):
@@ -95,7 +95,7 @@ class NovinoPayGateway(AbstractPaymentGateway):
             )
         else:
             return InitiatePaymentResponse(
-                success=True,
+                success=False,
                 message=response["message"],
                 code= response["status"],
                 authority= None
@@ -121,7 +121,7 @@ class NovinoPayGateway(AbstractPaymentGateway):
             )
         else:
             return VerifyPaymentResponse(
-                success=True,
+                success=False,
                 message=response["message"],
                 code= response["status"],
                 ref_id= response["data"]["ref_id"],
